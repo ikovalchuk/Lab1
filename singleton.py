@@ -28,3 +28,9 @@ obj2 = Singleton('MyInstance 2')
 print (obj2.get_name())  # MyInstance 1
 
 print (obj1 is obj2 is Singleton.get_instance()) # True
+
+
+
+#MyInstance 1
+#MyInstance 2
+#False
