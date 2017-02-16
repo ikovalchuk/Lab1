@@ -6,7 +6,7 @@ def decorator(func):
         return x,y
     return modify
 
-@decorator
+decorator
 def func(a,b):
     print (a**2,b**2)
     return a**2,b**2
