@@ -30,3 +30,8 @@ if __name__ == '__main__':
     boats.append(FloatFactory(num=i, factory=BoatFactory))
   for boat in boats:
     print(boat)
+    
+#Boat: {'max_peoples': 7, 'max_speed': 90, 'color_num': 2, 'oars': 1, 'name': 'beda_0'}
+#Boat: {'max_peoples': 8, 'max_speed': 80, 'color_num': 5, 'oars': 1, 'name': 'beda_1'}
+#Boat: {'max_peoples': 5, 'max_speed': 60, 'color_num': 1, 'oars': 1, 'name': 'beda_2'}
+#Boat: {'max_peoples': 6, 'max_speed': 50, 'color_num': 5, 'oars': 2, 'name': 'beda_3'}
