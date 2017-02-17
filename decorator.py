@@ -1,20 +1,33 @@
-def decorator(func):
-    def modify(*args, **kwargs):
-        variable = kwargs.pop('variable', None)
-        print (variable)
-        x,y=func(*args, **kwargs)
-        return x,y
-    return modify
+from abc import ABCMeta, abstractmethod
 
-decorator
-def func(a,b):
-    print (a**2,b**2)
-    return a**2,b**2
+class IOperator(object):
+    """
+    Интерфейс, который должны реализовать как декоратор,
+    так и оборачиваемый объект.
+    """
+    __metaclass__ = ABCMeta
 
-func(a=4, b=5, variable="hi")
-func(a=4, b=5)
+    @abstractmethod
+    def operator(self):
+        pass
 
-# hi
-# 16 25
-# None
-# 16 25
+
+class Component(IOperator):
+    """Компонент программы"""
+    def operator(self):
+        return 10.0
+
+
+class Wrapper(IOperator):
+    """Декоратор"""
+    def __init__(self, obj):
+        self.obj = obj
+
+    def operator(self):
+        return self.obj.operator() + 5.0
+
+
+comp = Component()
+comp = Wrapper(comp)
+print comp.operator()
+# 15.0
