@@ -1,37 +1,52 @@
-import random
-class Boat(object):
-  def __init__(self, name, max_peoples, max_speed, color_num, oars):
-    self.max_peoples = max_peoples
-    self.max_speed = max_speed
-    self.color_num = color_num
-    self.oars = oars
-    self.name = name
-  def __str__(self):
-    return str(self.__class__.__name__) + ': ' + str(self.__dict__)
-#class RaftFactory(object):
-#  pass
-#class SubmarineFactory(object):
-#  pass
-class BoatFactory(object):
-  def __new__(self, num):
-    return Boat(
-      name='beda_'+str(num),
-      max_peoples=random.randint(5, 10),
-      max_speed=(random.randint(5, 10)) * 10,
-      color_num=random.randint(1, 5),
-      oars=random.randint(1, 2)
-    )
-class FloatFactory(object):
-  def __new__(self, num, factory):
-    return factory(num)
-if __name__ == '__main__':
-  boats = []
-  for i in range(4):
-    boats.append(FloatFactory(num=i, factory=BoatFactory))
-  for boat in boats:
-    print(boat)
-    
-#Boat: {'max_peoples': 7, 'max_speed': 90, 'color_num': 2, 'oars': 1, 'name': 'beda_0'}
-#Boat: {'max_peoples': 8, 'max_speed': 80, 'color_num': 5, 'oars': 1, 'name': 'beda_1'}
-#Boat: {'max_peoples': 5, 'max_speed': 60, 'color_num': 1, 'oars': 1, 'name': 'beda_2'}
-#Boat: {'max_peoples': 6, 'max_speed': 50, 'color_num': 5, 'oars': 2, 'name': 'beda_3'}
+class Shop(object):
+    def __init__(self, item_factory = None):
+        self.item_factory=item_factory
+
+    def get_item_description(self):
+        item=self.item_factory.get_item()
+        print "Item model ",self.item_factory.model()
+        print "Item name ",item.name()
+        print "Item color ",self.item_factory.color()
+
+class Shoes(object):
+    def name(self):
+        return "Shoes"
+    def __str__(self):
+        return "Shoes"
+
+class Mobile(object):
+    def name(self):
+        return "Nokia"
+    def __str__(self):
+        return "Nokia"
+
+class ShoesFactory(object):
+    def get_item(self):
+        return Shoes()
+    def model(self):
+        return "MEN101"
+    def color(self):
+        return "Black"
+
+class MobileFactory(object):
+    def get_item(self):
+        return Mobile()
+    def model(self):
+        return "NOK404"
+    def color(self):
+        return "Black deep"
+
+shopShoes=Shop(ShoesFactory())
+shopShoes.get_item_description()
+print "*"*30
+shopMobile=Shop(MobileFactory())
+shopMobile.get_item_description()
+
+
+
+#Item name  Shoes
+#Item color  Black
+******************************
+#Item model  NOK404
+#Item name  Nokia
+#Item color  Black deep
