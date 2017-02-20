@@ -29,5 +29,5 @@ class Wrapper(IOperator):
 
 comp = Component()
 comp = Wrapper(comp)
-print comp.operator()
+print (comp.operator())
 # 15.0
